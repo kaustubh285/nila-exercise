@@ -1,17 +1,17 @@
-import {NestFactory} from '@nestjs/core';
-import {FastifyAdapter, type NestFastifyApplication} from '@nestjs/platform-fastify';
-import {SwaggerModule} from '@nestjs/swagger';
-import {AppModule} from './app.module';
+import { NestFactory } from '@nestjs/core';
+import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
+import { SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 import helmet from '@fastify/helmet';
 import multipart from '@fastify/multipart';
 import compression from '@fastify/compress';
-import {OPENAPI_SPEC} from './utils/openapi-builder.ts';
-import {apiReference} from '@scalar/nestjs-api-reference';
-import {configureNestJsTypebox} from 'nestjs-typebox';
-import {migrate} from 'drizzle-orm/node-postgres/migrator';
-import {db} from './db/db.ts';
-import {Logger} from 'nestjs-pino';
-import {VersioningType} from '@nestjs/common';
+import { OPENAPI_SPEC } from './utils/openapi-builder';
+import { apiReference } from '@scalar/nestjs-api-reference';
+import { configureNestJsTypebox } from 'nestjs-typebox';
+import { migrate } from 'drizzle-orm/node-postgres/migrator';
+import { db } from './db/db';
+// import { Logger } from 'nestjs-pino';
+import { VersioningType } from '@nestjs/common';
 
 const env = {
 	projectID: 'jdk53pvd',
@@ -42,7 +42,7 @@ export async function runMigrations() {
 if (process.env.ENV !== 'development') {
 	await runMigrations();
 	if (process.env.ENV === 'production') {
-		H.init(env);
+		// H.init(env);
 	}
 }
 
@@ -51,7 +51,7 @@ export const app = await NestFactory.create<NestFastifyApplication>(AppModule, n
 	rawBody: true,
 });
 
-app.useLogger(app.get(Logger));
+// app.useLogger(app.get(Logger));
 
 // MUST be before swagger module init
 app.enableVersioning({

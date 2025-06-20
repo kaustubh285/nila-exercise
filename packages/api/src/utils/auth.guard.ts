@@ -1,13 +1,13 @@
-import {type CanActivate, type ExecutionContext, Injectable, SetMetadata, UnauthorizedException} from '@nestjs/common';
-import {createDecoder} from 'fast-jwt';
-import type {FastifyRequest} from 'fastify';
-import {Reflector} from '@nestjs/core';
+import { type CanActivate, type ExecutionContext, Inject, Injectable, SetMetadata, UnauthorizedException } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import * as jose from 'jose';
+import type { FastifyRequest } from 'fastify';
 
 export const Public = () => SetMetadata('isPublic', true);
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-	constructor(private readonly reflector: Reflector) {}
+	constructor(@Inject(Reflector) private readonly reflector: Reflector) {}
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 		const isPublic = this.reflector.get<boolean>('isPublic', context.getHandler());
@@ -24,10 +24,11 @@ export class AuthGuard implements CanActivate {
 		}
 
 		try {
-			const payload = await createDecoder()(token);
+			const { payload } = await jose.jwtVerify(token, new TextEncoder().encode('your-secret-key'));
 			request['user'] = payload;
-		} catch {
-			throw new UnauthorizedException();
+		} catch (error) {
+			console.error('JWT verification failed:', error);
+			throw new UnauthorizedException('Invalid token');
 		}
 		return true;
 	}

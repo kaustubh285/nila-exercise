@@ -21,6 +21,7 @@ export const tasksTable = pgTable('tasks', {
 	projectId: text('project_id').notNull(),
 	status: taskStatusEnum().notNull().default('todo'),
 	priority: taskPriorityEnum().notNull().default('medium'),
+	deletedAt: timestamp('deleted_at'),
 });
 
 export const tasksRelations = relations(tasksTable, ({ one }) => ({
