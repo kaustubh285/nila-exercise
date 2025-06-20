@@ -1,13 +1,13 @@
-import {type CanActivate, type ExecutionContext, Injectable, SetMetadata, UnauthorizedException} from '@nestjs/common';
-import {createDecoder} from 'fast-jwt';
-import type {FastifyRequest} from 'fastify';
-import {Reflector} from '@nestjs/core';
+import { type CanActivate, type ExecutionContext, Inject, Injectable, SetMetadata, UnauthorizedException } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { createDecoder } from 'fast-jwt';
+import type { FastifyRequest } from 'fastify';
 
 export const Public = () => SetMetadata('isPublic', true);
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-	constructor(private readonly reflector: Reflector) {}
+	constructor(@Inject(Reflector) private readonly reflector: Reflector) {}
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 		const isPublic = this.reflector.get<boolean>('isPublic', context.getHandler());
