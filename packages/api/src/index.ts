@@ -46,7 +46,7 @@ if (process.env.ENV !== 'development') {
 	}
 }
 
-const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
+export const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
 	bufferLogs: true,
 	rawBody: true,
 });
