@@ -205,7 +205,11 @@ export const ProjectDetailPage = () => {
                 </Tabs.List>
 
                 <Tabs.Panel value="kanban">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                    <div style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                        gap: '1rem' 
+                    }}>
                         {/* Todo column */}
                         <Card withBorder padding="md">
                             <Text fw={700} mb="md">To Do ({groupedTasks.todo.length})</Text>

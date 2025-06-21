@@ -1,5 +1,7 @@
 # Full-Stack Developer Take-Home Project
 
+***Please refer to `ASSUMPTIONS_AND_DECISIONS.md` ***
+
 ## Project Overview
 Build a **Project Task Manager** - a simplified version of tools like Linear or Asana. This exercise will demonstrate your ability to work with our tech stack and make thoughtful architectural decisions.
 

@@ -70,7 +70,7 @@ await app.register(compression);
 await app.register(multipart);
 
 const document = SwaggerModule.createDocument(app, OPENAPI_SPEC, {
-	operationIdFactory: (controllerKey, methodKey, version) => methodKey + version.toUpperCase(),
+	operationIdFactory: (controllerKey, methodKey, version) => methodKey + version?.toUpperCase(),
 });
 
 app.use('/api-docs', apiReference({ spec: { content: document }, withFastify: true }));
