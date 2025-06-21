@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param, Patch, Post, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param, Patch, Post, Put, Req } from '@nestjs/common';
 import { TasksService } from '../services/tasks.service';
 import { type CreateTaskDto } from '../dto/create-task.dto';
 import { type UpdateTaskDto } from '../dto/update-task.dto';
@@ -18,7 +18,7 @@ export class TasksController {
 		}
 	}
 
-	@Patch(':taskId')
+	@Put(':taskId')
 	async updateTask(@Param('taskId') taskId: string, @Body() body: UpdateTaskDto) {
 		try {
 			const updatedTask = await this.tasksService.updateTask(taskId, body);
