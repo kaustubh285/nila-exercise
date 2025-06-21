@@ -17,7 +17,6 @@ export class UsersController {
 	@Public()
 	@Post('/login')
 	async login(@Body() body: UserOperationDto) {
-		console.log('Login request received with body:', body);
 		return this.usersService.login(body);
 	}
 }

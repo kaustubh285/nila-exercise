@@ -12,7 +12,6 @@ export const useProjects = () => {
 					'Content-Type': 'application/json',
 				},
 			});
-			console.log('Projects response:', response);
 			const { data } = response.data as { data: Project[] };
 			if (!data || !Array.isArray(data)) {
 				throw new Error('Invalid response format for projects');
@@ -156,7 +155,6 @@ export const useUpdateTask = () => {
 				priority?: 'low' | 'medium' | 'high';
 			};
 		}) => {
-			console.log('Updating task with data:', data);
 			const response = await client.put({
 				url: `/v1/tasks/${taskId}`,
 				baseUrl: 'http://localhost:3000',

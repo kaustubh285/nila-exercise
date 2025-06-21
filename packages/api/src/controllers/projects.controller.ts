@@ -23,7 +23,6 @@ export class ProjectsController {
 	async getAllProjectsForUser(@Req() request: AuthenticatedRequest) {
 		try {
 			const userId = request['user'].id;
-			console.log('Fetching all projects for user', userId);
 			const projects = await this.projectsService.getProjects(userId);
 			return {
 				data: projects,
@@ -39,7 +38,6 @@ export class ProjectsController {
 		try {
 			const userId = request['user'].id;
 
-			console.log(`Fetching project with ID: ${projectId} for user ID: ${userId}`);
 			const result = await this.projectsService.getProjectById(projectId, userId);
 
 			if (!result) {

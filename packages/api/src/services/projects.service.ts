@@ -73,7 +73,6 @@ export class ProjectsService {
 			}
 
 			const project = result[0].project;
-			console.log('Project found:', project);
 			const tasks = result.filter((row) => row.task).map((row) => row.task);
 
 			return { ...project, tasks };

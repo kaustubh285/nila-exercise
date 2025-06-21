@@ -48,7 +48,6 @@ export const ProjectDetailPage = () => {
         try {
             const { id, ...data } = values;
             if (isEditing) {
-                console.log('Updating task:', data);
                 await updateTask.mutateAsync({
                     taskId: id as string, 
                     projectId: projectId as string,

@@ -45,7 +45,6 @@ export const LoginPage = () => {
                 setIsRegistering(false);
             } else {
 
-                console.log('Logging in with values:', values);
                 const response = await login.mutateAsync(values) as LoginResponse;
                 
                 if (response.Error) {
