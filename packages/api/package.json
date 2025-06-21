@@ -24,7 +24,7 @@
     "@nestjs/swagger": "^11.0.7",
     "@scalar/nestjs-api-reference": "^0.4.2",
     "@sinclair/typebox": "^0.34.16",
-    "drizzle-orm": "^0.39.3",
+    "drizzle-orm": "^0.44.2",
     "drizzle-typebox": "^0.3.0",
     "fast-jwt": "^6.0.1",
     "jose": "^6.0.11",

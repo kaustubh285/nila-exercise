@@ -42,7 +42,6 @@ export class UsersService {
 			id: user.id,
 			email: user.email,
 		};
-		console.log('JWT is token for ', payload);
 
 		const token = await new jose.SignJWT(payload)
 			.setProtectedHeader({ alg: 'HS256' })
